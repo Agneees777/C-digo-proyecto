@@ -1,0 +1,502 @@
+
+\documentclass[letterpaper]{article}
+\usepackage[english, spanish, mexico, es-noitemize]{babel}
+
+\usepackage[tbtags]{amsmath}
+\usepackage{amssymb, amsthm, mathtools, physics}
+\usepackage[nolimits]{cmupint}% 
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\documentclass{article}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\usepackage[margin=1in, top=1.25in, headheight=2\baselineskip, headsep=\baselineskip]{geometry}
+\usepackage{fancyhdr}
+\usepackage[pdfusetitle, colorlinks]{hyperref}
+\usepackage[shortlabels, inline]{enumitem}
+\usepackage{multicol, array}
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+\usepackage{xcolor, xpatch, calc}
+
+
+\usepackage{graphicx, booktabs, wrapfig, pdfpages}
+\usepackage{pgfplots}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[outline]{contour}
+\usepackage[hang, labelfont=bf, labelsep=period, margin=0.5in]{caption}
+\usepackage{subcaption}
+
+\usepackage[backend=biber]{biblatex}
+\usepackage{csquotes}
+\addbibresource{repbib.bib}
+
+
+\usepackage{lipsum}
+
+
+	
+\newcommand{\mysubtitle}%
+	{Variación del precio y exportaciones del café Colombiano en Rstudio }
+
+\newcommand{\myauthor}%
+		{Erick Enrique Bastidas Santana ||
+    {\href{mailto:  erbastidass@unal.edu.co}
+	{\texttt{erbastidass@unal.edu.co}}}%
+	
+		\\Idalia Hernandez Lopez  ||
+		{\href{mailto:	smarquezc@unal.edu.co}%
+	{\texttt{idhernandezl@unal.edu.co}}}%
+	
+	\\Marieth Agnes Guillen Garcia||
+		{\href{mailto:  jamercadom@unal.edu.co }%
+	{\texttt{mguillen@unal.edu.co}}}%
+	
+		\\Raul Ricardo Reales Cohen ||
+        {\href{mailto:  rreales@unal.edu.co}
+    {\texttt{rreales@unal.edu.co}}}}
+		
+		
+\newcommand{\thesubject}%
+	{Proyecto de Programación en lenguajes estadísticos}
+
+\newcommand{\secondinstitute}%
+	{Universidad Nacional de Colombia sede de La Paz}
+	
+
+\newcommand{\shortinstitute}%
+	{Universidad Nacional Sede de La Paz}
+
+
+\selectspanish
+
+
+\usepgfplotslibrary{colormaps}
+
+\usetikzlibrary{babel, calc, scopes, intersections, angles, quotes, arrows, arrows.meta, backgrounds, shapes.geometric, patterns, shadows, perspective, external}
+
+
+\pgfplotsset{compat=newest}
+
+
+\tikzset{
+	font = {\selectfont},
+	frame/.style={thin, dashed, lightgray, line cap=round, rounded corners=5pt}
+}
+
+
+\contourlength{1pt}
+
+
+\graphicspath{{imágenes/}{escudos/}}
+
+
+\hypersetup{allcolors=black}
+
+
+\setlist[enumerate, 1]{%
+	label=\textbf{\color{\emphcolor}\arabic*.},
+	labelindent=\parindent,
+	itemindent=*,
+	ref=\textbf{\arabic*}
+}
+\setlist[enumerate, 2]{%
+	label=\textbf{\color{\emphcolor}(\alph*)},
+	itemindent=*,
+	ref=\textbf{(\alph*)}
+}
+\setlist[enumerate, 3]{%
+	label=\color{\emphcolor}\roman*.,
+	itemindent=*,
+	ref=\roman*
+}
+
+
+\DefineBibliographyStrings{spanish}{andothers={et~al\adddot}}
+
+
+\renewcommand{\cftdotsep}{1}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecpresnum}{\color{\emphcolor}}
+\renewcommand{\cftsecaftersnum}{.}
+\setlength{\cftsecindent}{25pt}
+\renewcommand{\cftsecafterpnum}{\hspace*{25pt}}
+\setlength{\cftbeforesecskip}{\baselineskip/2}
+
+
+
+\newcommand{\rtwovec}[2]{
+	\begin{bmatrix*}[r]
+		#1 \\ #2 
+	\end{bmatrix*}
+}
+
+\newcommand{\rthreevec}[3]{% 
+	\begin{bmatrix*}[r]
+		#1 \\ #2 \\ #3
+	\end{bmatrix*}
+}
+
+\newcommand{\uvec}[1]{
+	\textbf{\^{#1}}
+}
+
+\newenvironment{amatrix}[2]{% 
+	\left[\begin{array}{@{}*{#1}{r}|*{#2}{r}@{}}
+	}%
+	{
+	\end{array}\right]
+}
+
+\DeclareMathOperator{\mcd}{mcd}% 
+\DeclareMathOperator{\midd}{med}% 
+\newcommand{\emphcolor}{gray}% 
+
+\titleformat{\section}[hang]
+{\Large\centering\bfseries}
+{\thetitle.}{\widthof{\ }}{\Large\color{\emphcolor}}
+
+
+\newcommand{\cover}{%
+	\thispagestyle{plain}
+	\begin{center}
+		\Large\textbf{\textcolor{\emphcolor}{\mytitle}} \\
+		\LARGE\textbf{\mysubtitle}
+		\bigskip
+		
+		\normalsize\myauthor \\
+		\small\myemail
+		\medskip
+		
+		\normalsize\firstinstitute \\ 
+		\secondinstitute
+		\medskip
+		
+		\normalsize\thedate \\
+	\end{center}%
+}
+
+
+\newcommand{\espkeywords}{\noindent\textit{Palabras clave:\ }}
+\newcommand{\engkeywords}{\noindent\textit{Keywords:\ }}
+
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\arraybackslash}m{#1}}
+
+
+
+\fancypagestyle{plain}{%
+	\renewcommand{\headrulewidth}{0pt}
+	
+	\fancyhf{}
+	\fancyfoot[c]{%
+		\begin{tabular}{M{1em}@{}M{2em}@{}M{1em}}
+			\textcolor{\emphcolor}{$\boldsymbol{-}$}
+			& \thepage &
+			\textcolor{\emphcolor}{$\boldsymbol{-}$}
+		\end{tabular}
+	}
+}
+
+
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{1pt}% 
+\xpretocmd\headrule{\color{\emphcolor}}{}{\PatchFailed}
+
+\fancyhf{}
+\fancyhead[l]{%
+	\begin{tabular}{@{}R{6.10em}@{}R{\widthof{\shortinstitute\ }}}
+		\includegraphics[height=0.4in]{escudoUnal_black.png}
+		& \shortinstitute
+	\end{tabular}
+}
+\fancyhead[r]{%
+	\textit{\thesubject}
+}
+\fancyfoot[c]{%
+	\begin{tabular}{M{1em}@{}M{2em}@{}M{1em}}
+		\textcolor{\emphcolor}{$\boldsymbol{-}$}
+		& \thepage &
+		\textcolor{\emphcolor}{$\boldsymbol{-}$}
+	\end{tabular}
+}
+
+
+\begin{document}
+	
+	\unspacedoperators
+
+	
+	\phantom{.}\vfill
+	\cover
+	
+	\begin{center}
+		\rule{.9\textwidth}{0.4pt}%
+	\end{center}
+	\begin{abstract}
+		
+Este trabajo tiene como finalidad dar a conocer mediante el uso de herramientas de programación la distribución de datos estadísticos recolectados por la Federación Nacional Cafetera colombiana(FNC) en cuanto a exportaciones, precio externo e interno del café colombiano a mediados de los años 50 en adelante. Para eso se utilizó el programa de Rstudio y sus librearías las cuales ayudaron con el análisis de los los datos suministrados por la FNC. A esta base de datos se les implementaron diversos métodos de análisis estadísticos, como el promedio, la desviación estándar, diagramas de dispersión, correlaciones entre otros, para así poder cumplir con el objetivo o finalidad de este trabajo. 
+
+		
+		\medskip
+		
+		\espkeywords Rstudio, estadísticos, análisis,promedio, desviación, café, federación, exportaciones, precios.
+	\end{abstract}
+	\selectlanguage{english} 
+
+	\begin{abstract}
+	
+The purpose of this work is to show, through the use of programming tools, the distribution of statistical data collected by the Colombian National Coffee Federation (FNC) regarding exports, external and internal prices of Colombian coffee from the mid 1950's onwards. For this purpose we used the Rstudio program and its libraries which helped with the analysis of the data provided by the FNC, to this database we implemented diverse methods of statistical analysis, such as the average, the standard deviation, dispersion diagrams, correlations among others, in order to fulfill the objective or purpose of this work.
+		
+		\medskip
+		
+		\engkeywords Rstudy, statistics, analysis, average, deviation, coffee, federation, exports, prices.
+	\end{abstract}
+	\begin{center}
+		\rule{.9\textwidth}{0.4pt}
+	\end{center}
+	\selectlanguage{spanish}
+	
+	\tableofcontents
+	\phantom{.}\vfill\phantom{.}
+	\clearpage
+	
+		
+	
+	
+	\section{Introducción}
+Se considera que el café es un commodity, una materia prima como el petróleo, cobre, el algodón, azúcar, el cacao y la soja, cuya producción o exportación depende del contexto internacional. El propósito de este trabajo fue guiado a partir del siguiente interrogante: ¿Cómo se ha visto afectado el precio y nivel de exportación del café colombiano a través del tiempo, teniendo en cuenta diversos factores externos como el clima, las guerras civiles y su demanda?.\\
+
+La organización internacional del café  fue establecida en 1963 a raíz de la actividad en 1962 del primer convenio internacional del café por un lapso de cinco años y que viene actuando desde entonces al amparo de sucesivos convenios historia(s.f). Uno de los sucesos que tuvo un fuerte impacto y que hizo que el precio del café cayera y que países productores formaran alianza y firmaran acuerdos de cuotas para establecer límites en producción y que permitiera estabilizar el mercado ocurrió durante la segunda guerra mundial que se ve reflejado en el acuerdo internacional del café que se formalizó en 1962.\\
+
+En 1945-1960 muchas parcelas se perdieron debido a la violencia y desplazamientos que obligaban a los agricultores a salir de los terrenos. En la década de 2000-2010 se presenció una disminución de la exportación del café  por la aparición de cultivos ilícitos que ocupaban 18,000 hectáreas en su mayoría coca y amapola y que ocupaban un 2.3\% de tierras, donde se evidencio una baja productividad por la baja rentabilidad de  la tierra, decidieron cambiar de cultivos haciendo que el café cayera en el mercado internacional. Desde el 2020 hasta la fecha actual el precio del café ha sido afectado por el fenómeno de la niña, que elevaron los insumo para el abono de las tierras, las bajas temperaturas, el exceso de agua, la aceleración de la maduración del grano, las afectaciones en la vías que conllevaron a que se dificultara el transporte del fruto para la venta y también para traer recursos necesarios para las necesidades de la tierra.\\
+
+Para darle solución a este interrogante se hizo uso de los datos aportados por la Federación Nacional de Cafeteros Colombiana(FNC), y utilizando la herramienta de Rstudio se pretende aplicar distintos métodos estadísticos que permitan dar solución a la problemática planteada.\\
+ 
+
+\section{Metodología}
+
+Utilizando Rstudio como herramienta para realizar el análisis, en primer lugar se instalaron las librerías que nos iban a servir para realizar los diferentes métodos de análisis estadísticos y diversas gráficas. Luego se realizaron las  lecturas o importaciones de los datos en el software Rstudio, después se seleccionaron los datos específicos a los cuales se les  hizo el análisis, que fueron: el precio interno mensual, el precio externo anual cafetero y el volumen de exportaciones del café, a estos se les asignaron unos nombre como variables de los cuales a volumen de exportaciones se le llamo \textbf{Expor}, a precio externo anual \textbf{pid5} y a precio interno mensual \textbf{pid6}.
+En la siguiente figura se muestra el código de las importaciones de los paquetes y datos. 
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.2\linewidth}
+\includegraphics[width=\linewidth]{PAKETES.png}
+\caption{Librerías}
+\label{fig:westminster_lateral}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\linewidth}
+\includegraphics[width=\linewidth]{librerias.png}
+\caption{Importaciones}
+\label{fig:westminster_aerea}
+\end{subfigure}
+\caption{Código de la importación del Dataframe y Packs}
+\label{fig:westminster}
+\end{figure}
+
+Luego se elaboró un código que nos permitiera agregar una columna de secuencias de números del 1 al 10 repitiéndose cada valor $120$ veces, la cual cada numero define una década ya que el data.frame contiene fechas desde $1913$ en adelante. Estas columnas se agregaron al \textbf{Expor} y al \textbf{pid5} teniendo en cuenta de que alguno de estos data.frame no estaban estrictamente clasificados por décadas y sabiendo que existían décadas incompletas, para así poder leer valor por valor y poder sacarle el promedio y la desviación estándar del data.frame con las funciones ya predefinidas $mean$ y $sd$, al volumen de exportaciones y al precio externo anual del café. Observar la siguiente linea de código:
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.4\linewidth}
+\includegraphics[width=\linewidth]{decadadas.png}
+\caption{vector de secuencia 1:11, repitiéndose 120 veces }
+\label{fig:westminster_lateral}
+\end{subfigure}
+\begin{subfigure}[b]{0.4\linewidth}
+\includegraphics[width=\linewidth]{promedio y desviacion.png}
+\caption{Promedio(mean) y desviación estándar(sd) de Expor y pid5}
+\label{fig:westminster_aerea}
+\end{subfigure}
+\caption{Código de mean y sd de Expor y pid5}
+\label{fig:westminster}
+\end{figure}
+
+\vspace{0.8cm}
+
+Después de hallar el promedio y la desviación estándar a los datos anteriormente mencionados, se procedió a diseñar un código que nos permitiera ver la gráfica de las exportaciones por volúmenes y los precios anuales para observar las variaciones que tuvieron a través del tiempo. Ver la siguiente imagen.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{codigo de graficas.png}
+\caption{Código de las gráficas }
+\label{fig:westminster}
+\end{figure}
+
+Además, se hizo un código para que ayudara a observar la correlación de los datos de \textbf{Expor} y \textbf{pid6} mediante una gráfica de dispersión donde se aplicó una regresión lineal. así mismo se analizó la correlación entre estas dos data.frame con un código para corroborar la información de la gráfica, pero antes de realizar ese procedimiento se eliminaron filas a la variable \textbf{pid6} debido a que para poder hacer la correlación de los dos data.frame deben de tener igual magnitudes. Mirar el siguiente Código.
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.3\linewidth}
+\includegraphics[width=\linewidth]{CODIGO ELIMINACION DE FILAS.png}
+\caption{vector de secuencia 1:11, repitiéndose 120 veces }
+\label{fig:westminster_lateral}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\linewidth}
+\includegraphics[width=\linewidth]{GRAFICA DE DISPERCION Y CORRELACION.png}
+\caption{Promedio(mean) y desviación estándar(sd) de Expor y pid5}
+\label{fig:westminster_aerea}
+\end{subfigure}
+\caption{Código de gráfica y regresión lineal}
+\label{fig:westminster}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\linewidth]{CORRELACION.png}
+\caption{Código de la correlación entre \textbf{pid6} y \textbf{Expor} }
+\label{fig:westminster}
+\end{figure}
+
+
+Por ultimo se diseñó un código que nos permitiera graficar los precios internos mensuales de las exportaciones del café por mes, desde finales de las décadas de los $50$ hasta el $2021$, además, se aplicó una regresión lineal que permitiera ver la variación de los precios por mes. Ver la siguiente linea de código:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\linewidth]{PROYECCIÓN DE PRECIOS.png}
+\caption{Código de las gráficas }
+\label{fig:westminster}
+\end{figure}
+
+De esta manera se finaliza los procedimientos que se implementaron para hacer el análisis de los datos y poder responder el interrogante que motivó la elaboración de este articulo.\\
+
+\section{Resultados y discusión}
+\subsection*{Resultados}
+
+En primer lugar encontramos los siguientes datos que corresponden a las exportaciones realizadas desde el año 1958 hasta junio del 2022, separados por décadas para realizar de manera más eficiente y sutil el promedio y la desviación estándar como se ve reflejado en la siguiente imagen: 
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.6\linewidth}
+\includegraphics[width=\linewidth]{promedioExpor.png}
+\caption{Promedio de exportaciones por décadas}
+\label{fig:westminster_lateral}
+\end{subfigure}
+\begin{subfigure}[b]{0.6\linewidth}
+\includegraphics[width=\linewidth]{DesviacionEstandarExpor.png}
+\caption{Desviación estándar de exportaciones por décadas}
+\label{fig:westminster_aerea}
+\end{subfigure}
+\caption{Promedio y desviación estándar para \textbf{Expor}}
+\label{fig:westminster}
+\end{figure}
+
+
+También se tomaron los datos correspondientes a los precios Ex-Dock anuales cafeteros de los cuales se pudieron extraer el promedio y la desviación estándar separados por décadas desde el 1913 hasta el 2021 como se refleja en la siguiente imagen:
+
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}[b]{0.7\linewidth}
+\includegraphics[width=\linewidth]{PromedioPid5.png}
+\caption{Promedio de precios por décadas}
+\label{fig:westminster_lateral}
+\end{subfigure}
+\begin{subfigure}[b]{0.7\linewidth}
+\includegraphics[width=\linewidth]{DesviacionEstandarPid5.png}
+\caption{Desviación estándar de precios por décadas}
+\label{fig:westminster_aerea}
+\end{subfigure}
+\caption{Promedio y desviación estándar para \textbf{pid5}}
+\label{fig:westminster}
+\end{figure}
+
+A partir de los datos de exportación fue posible realizar un diagrama de dispersión donde se evidenció la variación del volumen de exportación del café en kilogramos con respecto a las décadas, como se muestra en el siguiente gráfico: 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\linewidth]{volumen.png}
+\caption{Gráfica de volumen de exportación por décadas }
+\label{fig:westminster}
+\end{figure}
+
+
+Además se tomó como referencia la tabla de precios externos que permitió realizar el análisis del gráfico de dispersión en el cual se pudo observar cómo cambió o vario el precio externo del café promedio anual con respecto a las décadas, como se observa en el siguiente imagen: \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\linewidth]{precio externo.png}
+\caption{Gráfica del precio externo anual por décadas}
+\label{fig:westminster}
+\end{figure}
+
+Se tomaron los datos proporcionados por la Federación Nacional de cafeteros de Colombia específicamente el volumen de exportaciones y los precios internos para hacer una regresión lineal y ver que tanto se correlación entre si, veamos la siguiente ilustración \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\linewidth]{Regresionlineal.png}
+\caption{Gráfica de regresión lineal}
+\label{fig:westminster}
+\end{figure}
+
+Se vio reflejado un interés específicamente en el precio de las exportaciones del café a través del tiempo y se denoto que a medidas que los años iban pasando el numero de pesos por exportaciones mensuales fueron incrementando gradualmente, incluso, se evidencia claramente que la inflación del peso colombiano había entrado en acción, se quiso saber que tanto había afectado la inflación al peso y ver de que manera esto afecta a la venta del café, en la siguiente gráfica se muestra la afección de la inflación al peso Colombiano: \\ 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\linewidth]{Devaluación.png}
+\caption{Gráfica de la devaluación del peso en el precio del café}
+\label{fig:westminster}
+\end{figure}\\
+
+Por ultimo, se gráfico el aumento de los precios de la exportaciones del café Colombiano cada mes desde finales de los años de $1958$, y se le aplico una regresión lineal para denotar su variación, pero como era de esperarse se observó a simple vista que por diversos factores se incremento el valor del café, como se puede observar en la siguiente figura:\\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\linewidth]{proyecciones.png}
+\caption{Gráfica de la proyección de precios con regresión lineal}
+\label{fig:westminster}
+\end{figure}
+
+\subsection*{Discusión}
+El efecto de clima, guerras civiles y demanda han sido unos de los factores con mayor repercusión en cuanto a la comercialización del grano centrado en Colombia. Los precios del café y las exportaciones en las últimas décadas en Colombia no se han mantenido estables debido a factores que lo impiden como sucedió en las inundaciones que afectó al país por el fenómeno de la niña donde hubo grandes perdidas económicas porque se perdieron los cultivos de café y por ende hubo caídas tanto en el precio del café como en las exportaciones. Analizando la información realizada sobre la variación media de exportaciones, se evidenció que la dispersión de los datos fue incrementando y disminuyendo como se puede ver en la \textbf{figura 7-b } lo cuál, quiere decir que hubo periodos donde el precio del café tubo grandes decaídas y periodos donde se mantuvo a buen precio. Asimismo, se observó cómo la media aritmética fue aumentando, lo cual se evidenció cuando se realizó la operación del promedio por décadas en la \textbf{figura 7-a }, diversos factores impidieron que se diera de manera viable la exportación del grano como: los bloqueos en las vías y la falta de contenedores, también sumándole los límites de producción para equilibrar el mercado y las sequías.\\
+
+Por otra parte, se realizó el análisis de las exportaciones en el precio externo del café, fue posible observar como la variación en la media de los precios tomados por décadas fue incrementando a gran escala como se observa en la \textbf{figura 8-a} además, se observó cómo la desviación individual en cada década con respecto a la media de dispersión fue mayor o menor de la población como se ve en la \textbf{figura 8-b}.Esto se debe al incremento de los insumos, la falta de transporte para llevar los granos del café para la venta y la falta de recursos que provocaron una fuerte variación en la desviación estándar de los precios del café.\\ 
+
+Al realizar el respectivo análisis de la \textbf{figura 9} en la cual se hace una comparación entre el volumen de exportaciones en $kg$ y las décadas se puede evidenciar que entre la década de 1950 hasta 1980 las exportaciones del país no tuvieron muchos cambios. En la década de 1990 al 2000 fue donde hubo mayor exportación con un crecimiento exponencial frente a los otros años y se puede observar que sobrepaso los 1500 $kg$ por día. En cuanto a las exportaciones del 2000 al 2020 se mantuvieron constantes. Por otro lado, En la \textbf{figura 10} se hizo una comparación entre el precio externo del café y las décadas donde se puede apreciar de manera más gráfica el comportamiento del precio del café a través del tiempo, es importante resaltar cómo la variación en los precios se mantuvo estable entre el periodo comprendido de 1913 hasta finales del 1950. A partir de 1960 en adelante el grado de distribución de los precios se fue alejando de la media aritmética, es decir, que la dispersión estadística fue elevándose por lo cual se puede inferir que los precios en estas décadas tuvieron un aumento considerable frente a las anteriores.\\
+
+En la \textbf{figura 11} se puede observar la representación gráfica de los valores de volumen de exportaciones y el precio interno del café Colombiano en la cual se describe una regresión lineal y una correlación, debido a que la regresión lineal esta ubicada en plano $0$ en el eje $y$, por lo tanto significa que los datos de volumen de exportaciones(variable independiente) no está linealmente relacionada con el precio interno, ya que no se puede predecir la cantidad de volumen exportado del café con el precio que tenga, esto a su vez da cabida a que no se encuentre correlación entre estas dos variables   
+
+
+El precio del café se vio afectado por diferentes factores como ya se ha mencionado, en la \textbf{figura 12} se puede hacer una apreciación gráfica de cómo la devaluación del peso en los precios del café mensual ha tendido un decremento de forma exponencial con respecto al valor del peso registrados desde el año 1960 hasta el 2021. Incluso, se puede observar como el índice de precios en el consumo varía con un decaimiento en el valor del peso, es decir, que en las décadas de los 60 se podía comprar un bulto de café con solo $100$ pesos y que ahora se deben de juntar cientos de miles de pesos para poder comprar la misma cantidad.\\  
+
+
+Finalmente, al momento de realizar la proyección lineal de los precios del café como se puede ver en la gráfica \textbf{figura 13}, estos datos indican cómo será el comportamiento de los años con respecto a los precios, lo cual permite predecir que el precio del café irá incrementando conforme al paso del tiempo que irá dependiendo de la cantidad de demanda y de la estabilidad de ofrecer el producto en el mercado donde se comercia. Además, este aumento también se ve afectado por el cambio climático, en su cultivación y la dificultades que tiene lo agricultores de café con plagas y demás factores que puedan retrasar la producción y exportación del grano.\\
+
+\section{Conclusión}
+
+
+Con base en los mecanismos que se implementaron para obtener los resultados se puede concluir que en general, los precios y las exportaciones del café colombiano tienen una fuerte participación en el comportamiento de la producción y exportación de productos comercializados en el mercado internacional, del cual se pudo evidenciar la variabilidad en los precios y las cantidades producidas y exportadas.\\
+
+Los resultados obtenidos muestran un alta tendencia en la baja de los precios del café que han afectado de manera importante los ingresos de los cafeteros, los cuales se ven obligados a elevar los precios y que provocan cambios en la estructura del mercado y en los costos de producción. \\
+ 
+
+
+
+\vspace{3cm}
+
+\section{Bibliografía}
+
+\begin{itemize}
+\item BBC News Mundo. (2020, octubre 1). Café en Colombia: por qué es importado y de baja calidad el que se toma en el país cafetero por excelencia. BBC. https://www.bbc.com/mundo/noticias-america-latina-51622198
+
+\item Cañón, M. C. R. (2022, junio 28). Café colombiano: precios altos y producción a la baja. El Espectador. https://www.elespectador.com/economia/cafe-colombiano-precios-altos-y-produccion-a-la-baja/
+
+\item Claudia, M., & Torres, E. (s/f). ANALISIS DEL SECTOR CAFETERO PERIODOS 2000 - 2010. Edu.co. Recuperado el 2 de septiembre de 2022, recuperado de:\\https://repository.unimilitar.edu.co/bitstream/handle/10654/11076/ANALISIS%20DEL%20SECTOR%20CAFETERO%20PERIODOS%202000%20-%202010.pdf?sequence=1&isAllowed=y
+
+\item Estadísticas Cafeteras. (2019, noviembre 30). Federación Nacional de Cafeteros. Recuperado de:\\ https://federaciondecafeteros.org/wp/estadisticas-cafeteras/
+
+\item International coffee organization - historia. (s/f). Ico.org. Recuperado el 3 de septiembre de 2022, de https://www.ico.org/es/icohistoryc.asp
+
+\item “LA CONOMIA CAFETERA EN LA DECADA DE 1950”. (s/f). Recuperado el 3 de septiembre de 2022, de http://file:///C:/Users/ASUS/Downloads/19065-Texto%20del%20art%C3%ADculo-72709-1-10-20110607.pdf
+\end{itemize}
+
+
+
+
