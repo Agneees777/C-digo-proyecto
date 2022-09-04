@@ -440,7 +440,7 @@ Se vio reflejado un interés específicamente en el precio de las exportaciones 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.65\linewidth]{Devaluación.png}
+\includegraphics[width=0.6\linewidth]{Devaluación.png}
 \caption{Gráfica de la devaluación del peso en el precio del café}
 \label{fig:westminster}
 \end{figure}\\
@@ -449,10 +449,10 @@ Por ultimo, se gráfico el aumento de los precios de la exportaciones del café 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.75\linewidth]{proyecciones.png}
+\includegraphics[width=0.6\linewidth]{proyecciones.png}
 \caption{Gráfica de la proyección de precios con regresión lineal}
 \label{fig:westminster}
-\end{figure}
+\end{figure}\\
 
 \subsection*{Discusión}
 El efecto de clima, guerras civiles y demanda han sido unos de los factores con mayor repercusión en cuanto a la comercialización del grano centrado en Colombia. Los precios del café y las exportaciones en las últimas décadas en Colombia no se han mantenido estables debido a factores que lo impiden como sucedió en las inundaciones que afectó al país por el fenómeno de la niña donde hubo grandes perdidas económicas porque se perdieron los cultivos de café y por ende hubo caídas tanto en el precio del café como en las exportaciones. Analizando la información realizada sobre la variación media de exportaciones, se evidenció que la dispersión de los datos fue incrementando y disminuyendo como se puede ver en la \textbf{figura 7-b } lo cuál, quiere decir que hubo periodos donde el precio del café tubo grandes decaídas y periodos donde se mantuvo a buen precio. Asimismo, se observó cómo la media aritmética fue aumentando, lo cual se evidenció cuando se realizó la operación del promedio por décadas en la \textbf{figura 7-a }, diversos factores impidieron que se diera de manera viable la exportación del grano como: los bloqueos en las vías y la falta de contenedores, también sumándole los límites de producción para equilibrar el mercado y las sequías.\\
@@ -479,7 +479,7 @@ Los resultados obtenidos muestran un alta tendencia en la baja de los precios de
 
 
 
-\vspace{3cm}
+\vspace{6cm}
 
 \section{Bibliografía}
 
@@ -496,7 +496,6 @@ Los resultados obtenidos muestran un alta tendencia en la baja de los precios de
 
 \item “LA CONOMIA CAFETERA EN LA DECADA DE 1950”. (s/f). Recuperado el 3 de septiembre de 2022, de http://file:///C:/Users/ASUS/Downloads/19065-Texto%20del%20art%C3%ADculo-72709-1-10-20110607.pdf
 \end{itemize}
-
 
 
 
